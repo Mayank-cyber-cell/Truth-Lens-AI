@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 230 25% 5%;
+    --foreground: 210 40% 95%;
+
+    --card: 230 25% 8%;
+    --card-foreground: 210 40% 95%;
+
+    --popover: 230 25% 8%;
+    --popover-foreground: 210 40% 95%;
+
+    --primary: 270 80% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 190 95% 50%;
+    --secondary-foreground: 230 25% 5%;
+
+    --muted: 230 20% 15%;
+    --muted-foreground: 215 20% 55%;
+
+    --accent: 270 60% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 230 20% 18%;
+    --input: 230 20% 15%;
+    --ring: 190 95% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --neon-cyan: 190 95% 50%;
+    --neon-purple: 270 80% 60%;
+    --neon-blue: 220 90% 55%;
+    --deep-navy: 230 30% 8%;
+    --glass-bg: 230 25% 12%;
+    --glass-border: 230 20% 22%;
+    --gradient-cyber: linear-gradient(135deg, hsl(270 80% 60%), hsl(220 90% 55%), hsl(190 95% 50%));
+    --gradient-scan: linear-gradient(180deg, hsl(190 95% 50% / 0), hsl(190 95% 50% / 0.3), hsl(190 95% 50% / 0));
+    --glow-cyan: 0 0 20px hsl(190 95% 50% / 0.4), 0 0 60px hsl(190 95% 50% / 0.1);
+    --glow-purple: 0 0 20px hsl(270 80% 60% / 0.4), 0 0 60px hsl(270 80% 60% / 0.1);
+
+    --sidebar-background: 230 25% 5%;
+    --sidebar-foreground: 210 40% 95%;
+    --sidebar-primary: 270 80% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 230 20% 15%;
+    --sidebar-accent-foreground: 210 40% 95%;
+    --sidebar-border: 230 20% 18%;
+    --sidebar-ring: 190 95% 50%;
+  }
+
+  .light {
+    --background: 220 20% 97%;
+    --foreground: 230 25% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 230 25% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 230 25% 10%;
+
+    --primary: 270 80% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 190 85% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 40%;
+
+    --accent: 270 60% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 88%;
+    --input: 220 15% 90%;
+    --ring: 270 80% 55%;
+
+    --neon-cyan: 190 85% 40%;
+    --neon-purple: 270 75% 50%;
+    --neon-blue: 220 80% 50%;
+    --deep-navy: 230 20% 95%;
+    --glass-bg: 220 20% 96%;
+    --glass-border: 220 15% 85%;
+    --glow-cyan: 0 0 15px hsl(190 85% 40% / 0.2), 0 0 40px hsl(190 85% 40% / 0.05);
+    --glow-purple: 0 0 15px hsl(270 75% 50% / 0.2), 0 0 40px hsl(270 75% 50% / 0.05);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 230 25% 10%;
+    --sidebar-primary: 270 80% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 92%;
+    --sidebar-accent-foreground: 230 25% 10%;
+    --sidebar-border: 220 15% 88%;
+    --sidebar-ring: 270 80% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-glass/40 backdrop-blur-xl border border-glass-border rounded-xl;
+  }
+  .glass-card-hover {
+    @apply glass-card transition-all duration-500 hover:border-neon-cyan/40 hover:shadow-glow-cyan;
+  }
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-neon-purple via-neon-blue to-neon-cyan;
+  }
+  .glow-border-cyan {
+    @apply border border-neon-cyan/30 shadow-glow-cyan;
+  }
+  .glow-border-purple {
+    @apply border border-neon-purple/30 shadow-glow-purple;
+  }
+  .scan-line {
+    @apply absolute left-0 right-0 h-px bg-gradient-to-r from-transparent via-neon-cyan to-transparent;
+    animation: scanLine 3s ease-in-out infinite;
+  }
+  .pulse-ring {
+    animation: pulseRing 2s ease-out infinite;
+  }
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  .auth-grid-pattern {
+    @apply absolute inset-0 opacity-[0.02];
+    background-image: radial-gradient(hsl(var(--neon-cyan)) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .map-grid-pattern {
+    @apply absolute inset-0 opacity-10;
+    background-image: linear-gradient(hsl(190 95% 50% / 0.3) 1px, transparent 1px), linear-gradient(90deg, hsl(190 95% 50% / 0.3) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+  .flip-card-3d {
+    transform-style: preserve-3d;
+  }
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+  .rotate-y-180 {
+    transform: rotateY(180deg);
+  }
+}
+
+@keyframes scanLine {
+  0%, 100% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  50% { top: 100%; }
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(0.8); opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes gridMove {
+  0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
+  100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+}
